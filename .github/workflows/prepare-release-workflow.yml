@@ -9,9 +9,6 @@
 name: Prepare Release
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types:
       - closed
@@ -58,7 +55,7 @@ jobs:
       - name: Get Released version
         run: |
           echo "RELEASE_VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))" >> "$GITHUB_ENV"
-          echo "Released Version: ${{env.RELEASE_VERSION}}"
+          echo "Released Version: $RELEASE_VERSION"
 
       - name: Create Release with Notes
         uses: ncipollo/release-action@v1
