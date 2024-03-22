@@ -27,7 +27,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn -B release:perform --file pom.xml
+        run: mvn -B clean install --file pom.xml
 
       - name: Create Release with Notes
         uses: ncipollo/release-action@v1
