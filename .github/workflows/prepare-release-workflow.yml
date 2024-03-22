@@ -44,14 +44,11 @@ jobs:
           git config --global user.name "Deploy Bot"
 
       - name: Prepare Release with specified version
-        run: ./mvnw -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
+        run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
         if: inputs.releaseVersion != '0.0.0' && inputs.releaseVersion != ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare Release with default minor version increment
-        run: ./mvnw -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:'
+        run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:'
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
