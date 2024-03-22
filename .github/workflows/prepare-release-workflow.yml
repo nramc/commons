@@ -51,4 +51,12 @@ jobs:
         run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:'
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
 
+      - name: Create Release with Notes
+        uses: ncipollo/release-action@v1
+        with:
+          commit: main
+          generateReleaseNotes: true
+          draft: false
+          prerelease: false
+          token: ${{ secrets.DEPLOY_TOKEN }}
 
