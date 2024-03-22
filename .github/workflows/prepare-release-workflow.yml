@@ -41,7 +41,7 @@ jobs:
           git config --global user.name "Deploy Bot"
 
       - name: Prepare Release with specified version
-        run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
+        run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }} -Dusername=mranc -Dpassword=${{ secrets.DEPLOY_TOKEN }}
         if: inputs.releaseVersion != '0.0.0'
 
       - name: Prepare Release with default minor version increment
