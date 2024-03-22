@@ -50,10 +50,14 @@ jobs:
       - name: Prepare Release with specified version
         run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
         if: inputs.releaseVersion != '0.0.0' && inputs.releaseVersion != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
       - name: Prepare Release with default minor version increment
         run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:'
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
       - name: Create Release with Notes
         uses: ncipollo/release-action@v1
