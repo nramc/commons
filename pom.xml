@@ -10,7 +10,7 @@
 
     <groupId>com.github.nramc</groupId>
     <artifactId>commons</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-snapshot</version>
     <packaging>pom</packaging>
     <modules>
         <module>geojson</module>
