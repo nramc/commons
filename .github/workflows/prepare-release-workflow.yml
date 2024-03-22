@@ -61,5 +61,5 @@ jobs:
           name: v${{ inputs.getReleaseVersion.outputs.version }}
           draft: false
           prerelease: false
-          token: ${{ secrets.RELEASE_TOKEN }}
+          token: ${{ secrets.DEPLOY_TOKEN }}
 
