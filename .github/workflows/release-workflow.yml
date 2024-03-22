@@ -11,7 +11,7 @@ name: Perform Release
 on:
   push:
     tags:
-      - '*'
+      - v*
 
 jobs:
   build:
