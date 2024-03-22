@@ -45,6 +45,6 @@ jobs:
         if: inputs.releaseVersion != '0.0.0'
 
       - name: Prepare Release with default minor version increment
-        run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:'
+        run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -Dusername=mranc -Dpassword=${{ secrets.DEPLOY_TOKEN }}
         if: inputs.releaseVersion == '0.0.0'
 
