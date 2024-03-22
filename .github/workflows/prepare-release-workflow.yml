@@ -48,7 +48,7 @@ jobs:
 
       - name: Prepare Release with default minor version increment
         run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:'
-        if: inputs.releaseVersion == '0.0.0'
+        if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
