@@ -42,11 +42,11 @@ jobs:
 
       - name: Prepare Release with specified version
         run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
-        if: ${{inputs.releaseVersion}} != '0.0.0'
+        if: inputs.releaseVersion != '0.0.0'
 
       - name: Prepare Release with default minor version increment
         run: mvn -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:'
-        if: ${{inputs.releaseVersion}} == '0.0.0'
+        if: inputs.releaseVersion == '0.0.0'
 
       - name: Get version
         run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
