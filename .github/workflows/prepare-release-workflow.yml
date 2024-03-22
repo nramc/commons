@@ -27,10 +27,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-      packages: write
-
     steps:
 
       - uses: actions/checkout@v3
@@ -59,9 +55,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
+      - name: Get Released version
+        run: |
+          echo "RELEASE_VERSION=git describe --tags $(git rev-list --tags --max-count=1)" >> $GITHUB_ENV
+          echo "Released Version: ${{env.RELEASE_VERSION}}"
+
       - name: Create Release with Notes
         uses: ncipollo/release-action@v1
         with:
+          tag: ${{env.RELEASE_VERSION}}
+          name: ${{env.RELEASE_VERSION}}
           commit: main
           generateReleaseNotes: true
           draft: false
