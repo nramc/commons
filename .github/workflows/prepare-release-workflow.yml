@@ -16,7 +16,6 @@ on:
     inputs:
       releaseVersion:
         description: 'Release Version'
-        required: true
         default: ''
         type: string
 
