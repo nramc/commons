@@ -61,7 +61,7 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
       - name: Prepare Release with default minor version increment
-        run: mvn --batch-mode --no-transfer-progress -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+        run: mvn -B --batch-mode --no-transfer-progress -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
