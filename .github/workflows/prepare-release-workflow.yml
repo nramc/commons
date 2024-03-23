@@ -39,18 +39,13 @@ jobs:
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
+          gpg-private-key: GPG_PRIVATE_KEY
+          gpg-passphrase: GPG_PASSPHRASE
 
       - name: setup git properties for preparation
         run: |
           git config --global user.email "ramachandrannellai@gmail.com"
           git config --global user.name "Deploy Bot"
-      - id: install-secret-key
-        name: Install gpg secret key
-        run: |
-          # Install gpg secret key
-          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
-          # Verify gpg secret key
-          gpg --list-secret-keys --keyid-format LONG
 
       - name: Prepare Release with specified version
         run: mvn --batch-mode --no-transfer-progress -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }} -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
@@ -59,6 +54,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          GPG_PRIVATE_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
 
       - name: Prepare Release with default minor version increment
         run: mvn -B --batch-mode --no-transfer-progress -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
@@ -67,6 +64,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          GPG_PRIVATE_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
 
       - name: Get Released version
         run: |
