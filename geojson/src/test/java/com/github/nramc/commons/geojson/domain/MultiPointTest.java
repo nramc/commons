@@ -10,7 +10,6 @@ import org.springframework.boot.test.json.JsonContent;
 
 import java.io.IOException;
 
-import static com.github.nramc.commons.geojson.domain.types.GeoJsonType.Constants.MULTI_LINE_STRING_VALUE;
 import static com.github.nramc.commons.geojson.domain.types.GeoJsonType.Constants.MULTI_POINT_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -50,7 +49,7 @@ class MultiPointTest {
                      }
                 """;
         assertThat(jacksonTester.parseObject(json)).isNotNull()
-                .satisfies(obj -> assertThat(obj.getType()).isEqualTo(MULTI_LINE_STRING_VALUE))
+                .satisfies(obj -> assertThat(obj.getType()).isEqualTo(MULTI_POINT_VALUE))
                 .satisfies(obj -> assertThat(obj.getCoordinates()).asList().hasSize(2)
                         .containsExactly(Position.of(100, 0, 5), Position.of(101, 1, 5)));
 
