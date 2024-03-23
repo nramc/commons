@@ -9,7 +9,7 @@
         <relativePath />
     </parent>
 
-    <groupId>com.github.nramc</groupId>
+    <groupId>io.github.nramc</groupId>
     <artifactId>commons</artifactId>
     <version>0.0.24-SNAPSHOT</version>
     <packaging>pom</packaging>
