@@ -53,7 +53,7 @@ jobs:
           gpg --list-secret-keys --keyid-format LONG
 
       - name: Prepare Release with specified version
-        run: ./mvnw -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }} -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+        run: mvn --batch-mode --no-transfer-progress -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }} -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         if: inputs.releaseVersion != '0.0.0' && inputs.releaseVersion != ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
@@ -61,7 +61,7 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
       - name: Prepare Release with default minor version increment
-        run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+        run: mvn --batch-mode --no-transfer-progress -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
