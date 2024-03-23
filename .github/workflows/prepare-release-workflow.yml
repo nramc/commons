@@ -34,6 +34,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+          server-id: ossrh
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
 
       - name: setup git properties for preparation
         run: |
@@ -45,12 +48,16 @@ jobs:
         if: inputs.releaseVersion != '0.0.0' && inputs.releaseVersion != ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
       - name: Prepare Release with default minor version increment
         run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:'
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
       - name: Get Released version
         run: |
