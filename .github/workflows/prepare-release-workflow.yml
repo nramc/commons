@@ -9,6 +9,9 @@
 name: Prepare Release
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types:
       - closed
@@ -44,18 +47,28 @@ jobs:
           git config --global user.name "Deploy Bot"
 
       - name: Prepare Release with specified version
-        run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
+        run: ./mvnw -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:' -DreleaseVersion=${{ inputs.releaseVersion }}
         if: inputs.releaseVersion != '0.0.0' && inputs.releaseVersion != ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
       - name: Prepare Release with default minor version increment
-        run: ./mvnw -B -DpushChanges=true release:prepare release:perform -DscmCommentPrefix='chore:'
+        run: ./mvnw -B -DpushChanges=true release:prepare -DscmCommentPrefix='chore:'
         if: inputs.releaseVersion == '0.0.0' || inputs.releaseVersion == ''
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+
+      - name: Publish package
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          server-id: ossrh
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+      - name: Publish package
+        run: mvn --batch-mode deploy
+        env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
