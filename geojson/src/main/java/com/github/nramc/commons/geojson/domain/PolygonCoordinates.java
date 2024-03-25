@@ -2,6 +2,7 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+@NoArgsConstructor(force = true)
 public record PolygonCoordinates(List<Position> exterior, List<List<Position>> holes) implements Serializable {
     public PolygonCoordinates(final List<Position> exterior, final List<List<Position>> holes) {
         validateAndThrowError(exterior);

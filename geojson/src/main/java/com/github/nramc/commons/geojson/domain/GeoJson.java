@@ -3,6 +3,7 @@ package com.github.nramc.commons.geojson.domain;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -19,6 +20,7 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = Feature.class, name = GeoJsonType.Constants.FEATURE_VALUE),
         @JsonSubTypes.Type(value = FeatureCollection.class, name = GeoJsonType.Constants.FEATURE_COLLECTION_VALUE)
 })
+@NoArgsConstructor(force = true)
 public abstract sealed class GeoJson implements Serializable permits Feature, FeatureCollection, Geometry {
     protected final GeoJsonType type;
 

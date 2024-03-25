@@ -3,6 +3,7 @@ package com.github.nramc.commons.geojson.domain;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.NoArgsConstructor;
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
@@ -15,6 +16,7 @@ import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
         @JsonSubTypes.Type(value = MultiPolygon.class, name = GeoJsonType.Constants.MULTI_POLYGON_VALUE),
         @JsonSubTypes.Type(value = GeometryCollection.class, name = GeoJsonType.Constants.GEOMETRY_COLLECTION_VALUE)
 })
+@NoArgsConstructor(force = true)
 public abstract sealed class Geometry extends GeoJson permits
         Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, GeometryCollection {
 

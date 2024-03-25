@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor(force = true)
 public final class MultiLineString extends Geometry {
     private final List<List<Position>> coordinates;
 

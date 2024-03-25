@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor(force = true)
 public final class Polygon extends Geometry {
     private final PolygonCoordinates coordinates;
 

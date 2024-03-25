@@ -3,10 +3,12 @@ package com.github.nramc.commons.geojson.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
+@NoArgsConstructor(force = true)
 public final class Point extends Geometry {
     private final Position coordinates;
 
