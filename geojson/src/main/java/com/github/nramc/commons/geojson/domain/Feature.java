@@ -19,7 +19,7 @@ public non-sealed class Feature extends GeoJson {
     private final Geometry geometry;
     private final Map<String, Serializable> properties;
 
-    protected Feature(String id, Geometry geometry, Map<String, Serializable> properties) {
+    public Feature(String id, Geometry geometry, Map<String, Serializable> properties) {
         super(GeoJsonType.FEATURE);
         this.id = id;
         this.geometry = geometry;
@@ -27,6 +27,16 @@ public non-sealed class Feature extends GeoJson {
     }
 
     @JsonCreator
+    public Feature(String id, GeoJsonType type, Geometry geometry, Map<String, Serializable> properties) {
+        this(id, geometry, MapUtils.emptyIfNull(properties));
+        if (type != GeoJsonType.FEATURE) {
+            throw new IllegalArgumentException("Invalid type. expected 'Feature', but got " + type);
+        }
+        if (StringUtils.isBlank(id)) {
+            throw new IllegalArgumentException("Mandatory field 'id' should not be null/blank");
+        }
+    }
+
     public static Feature of(String id, GeoJsonType type, Geometry geometry, Map<String, Serializable> properties) {
         if (type != GeoJsonType.FEATURE) {
             throw new IllegalArgumentException("Invalid type. expected 'Feature', but got " + type);

@@ -22,6 +22,14 @@ public final class FeatureCollection extends GeoJson {
     }
 
     @JsonCreator
+    public FeatureCollection(GeoJsonType type, List<Feature> features) {
+        this(features);
+
+        if (type != GeoJsonType.FEATURE_COLLECTION) {
+            throw new IllegalArgumentException("Invalid type. expected 'FeatureCollection', but got " + type);
+        }
+    }
+
     public static FeatureCollection of(GeoJsonType type, List<Feature> features) {
         if (type != GeoJsonType.FEATURE_COLLECTION) {
             throw new IllegalArgumentException("Invalid type. expected 'FeatureCollection', but got " + type);

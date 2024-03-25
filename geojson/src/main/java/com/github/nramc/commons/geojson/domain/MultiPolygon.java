@@ -21,11 +21,21 @@ public final class MultiPolygon extends Geometry {
         this.coordinates = Collections.unmodifiableList(coordinates);
     }
 
+    @JsonCreator
+    public MultiPolygon(GeoJsonType type, List<PolygonCoordinates> coordinates) {
+        this(coordinates);
+        if (type != GeoJsonType.MULTI_POLYGON) {
+            throw new IllegalArgumentException("Invalid type. expected 'MultiPolygon', but got " + type);
+        }
+        if (CollectionUtils.isEmpty(coordinates)) {
+            throw new IllegalArgumentException("Invalid coordinates. Minimum one required");
+        }
+    }
+
     public static MultiPolygon of(PolygonCoordinates... coordinates) {
         return new MultiPolygon(List.of(coordinates));
     }
 
-    @JsonCreator
     public static MultiPolygon of(GeoJsonType type, List<PolygonCoordinates> coordinates) {
         if (type != GeoJsonType.MULTI_POLYGON) {
             throw new IllegalArgumentException("Invalid type. expected 'MultiPolygon', but got " + type);

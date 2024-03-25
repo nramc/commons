@@ -24,6 +24,14 @@ public final class LineString extends Geometry {
     }
 
     @JsonCreator
+    public LineString(GeoJsonType type, List<Position> coordinates) {
+        this(coordinates);
+        if (type != GeoJsonType.LINE_STRING) {
+            throw new IllegalArgumentException(String.format("Invalid type. expected[%s] got:[%s]",
+                    GeoJsonType.LINE_STRING.getType(), type.getType()));
+        }
+    }
+
     public static LineString of(GeoJsonType type, List<Position> coordinates) {
         if (type != GeoJsonType.LINE_STRING) {
             throw new IllegalArgumentException(String.format("Invalid type. expected[%s] got:[%s]",
