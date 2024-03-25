@@ -30,6 +30,10 @@ public final class Point extends Geometry {
         this.coordinates = coordinates;
     }
 
+    public Point(GeoJsonType type, double[] coordinates) {
+        this(type, Position.of(coordinates));
+    }
+
     public static Point of(GeoJsonType type, Position coordinates) {
         return new Point(type, coordinates);
     }
