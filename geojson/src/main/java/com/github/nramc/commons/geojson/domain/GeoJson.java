@@ -3,9 +3,11 @@ package com.github.nramc.commons.geojson.domain;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
@@ -20,9 +22,10 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = Feature.class, name = GeoJsonType.Constants.FEATURE_VALUE),
         @JsonSubTypes.Type(value = FeatureCollection.class, name = GeoJsonType.Constants.FEATURE_COLLECTION_VALUE)
 })
+@Data
 @NoArgsConstructor(force = true)
 public abstract sealed class GeoJson implements Serializable permits Feature, FeatureCollection, Geometry {
-    protected final GeoJsonType type;
+    protected GeoJsonType type;
 
     protected GeoJson(GeoJsonType type) {
         this.type = type;
@@ -30,7 +33,7 @@ public abstract sealed class GeoJson implements Serializable permits Feature, Fe
 
 
     public final String getType() {
-        return type.getType();
+        return Objects.requireNonNull(type).getType();
     }
 
 }

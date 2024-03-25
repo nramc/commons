@@ -2,21 +2,19 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public final class MultiLineString extends Geometry {
-    private final List<List<Position>> coordinates;
+    private List<List<Position>> coordinates;
 
     public MultiLineString(List<List<Position>> coordinates) {
         super(GeoJsonType.MULTI_LINE_STRING);

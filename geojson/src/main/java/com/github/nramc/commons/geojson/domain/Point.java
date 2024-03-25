@@ -2,15 +2,15 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Getter
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@Data
 @NoArgsConstructor(force = true)
 public final class Point extends Geometry {
-    private final Position coordinates;
+    private Position coordinates;
 
     public Point(Position coordinates) {
         super(GeoJsonType.POINT);

@@ -2,20 +2,18 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor(force = true)
 public final class Position implements Serializable {
 
     @JsonValue
-    private final double[] values;
+    private double[] values;
 
     @JsonCreator
     public Position(double[] coordinates) {

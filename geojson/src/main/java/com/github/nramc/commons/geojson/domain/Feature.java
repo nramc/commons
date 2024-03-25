@@ -2,24 +2,22 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Map;
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public non-sealed class Feature extends GeoJson {
-    private final String id;
-    private final Geometry geometry;
-    private final Map<String, Serializable> properties;
+    private String id;
+    private Geometry geometry;
+    private Map<String, Serializable> properties;
 
     public Feature(String id, Geometry geometry, Map<String, Serializable> properties) {
         super(GeoJsonType.FEATURE);

@@ -2,20 +2,18 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.Collections;
 import java.util.List;
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public final class LineString extends Geometry {
-    private final List<Position> coordinates;
+    private List<Position> coordinates;
 
     public LineString(List<Position> coordinates) {
         super(GeoJsonType.LINE_STRING);

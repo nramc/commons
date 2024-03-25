@@ -2,21 +2,19 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public final class MultiPolygon extends Geometry {
-    private final List<PolygonCoordinates> coordinates;
+    private List<PolygonCoordinates> coordinates;
 
     public MultiPolygon(final List<PolygonCoordinates> coordinates) {
         super(GeoJsonType.MULTI_POLYGON);

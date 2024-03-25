@@ -2,21 +2,19 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public final class GeometryCollection extends Geometry {
-    private final List<Geometry> geometries;
+    private List<Geometry> geometries;
 
     public GeometryCollection(List<Geometry> geometries) {
         super(GeoJsonType.GEOMETRY_COLLECTION);

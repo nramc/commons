@@ -2,21 +2,19 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public final class MultiPoint extends Geometry {
-    private final List<Position> coordinates;
+    private List<Position> coordinates;
 
     public MultiPoint(List<Position> coordinates) {
         super(GeoJsonType.MULTI_POINT);

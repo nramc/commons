@@ -2,21 +2,19 @@ package com.github.nramc.commons.geojson.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
 
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
 public final class FeatureCollection extends GeoJson {
-    private final List<Feature> features;
+    private List<Feature> features;
 
     public FeatureCollection(List<Feature> features) {
         super(GeoJsonType.FEATURE_COLLECTION);
