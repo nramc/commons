@@ -20,6 +20,17 @@ public final class Polygon extends Geometry {
         this.coordinates = coordinates;
     }
 
+    @JsonCreator
+    public Polygon(GeoJsonType type, List<List<Position>> coordinates) {
+        this(PolygonCoordinates.of(coordinates));
+        if (type != GeoJsonType.POLYGON) {
+            throw new IllegalArgumentException("Invalid type. 'Polygon' expected, but got " + type);
+        }
+        if (CollectionUtils.isEmpty(coordinates)) {
+            throw new IllegalArgumentException("Invalid Coordinates. Mandatory one position required.");
+        }
+    }
+
     public static Polygon of(final List<Position> exterior, final List<List<Position>> holes) {
         return new Polygon(new PolygonCoordinates(exterior, holes));
     }
@@ -33,7 +44,6 @@ public final class Polygon extends Geometry {
         return new Polygon(coordinates);
     }
 
-    @JsonCreator
     public static Polygon of(GeoJsonType type, List<List<Position>> coordinates) {
         if (type != GeoJsonType.POLYGON) {
             throw new IllegalArgumentException("Invalid type. 'Polygon' expected, but got " + type);

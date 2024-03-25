@@ -22,6 +22,17 @@ public final class GeometryCollection extends Geometry {
     }
 
     @JsonCreator
+    public GeometryCollection(GeoJsonType type, List<Geometry> geometries) {
+        this(geometries);
+
+        if (type != GeoJsonType.GEOMETRY_COLLECTION) {
+            throw new IllegalArgumentException("Invalid type. expected 'GeometryCollection', but got " + type);
+        }
+        if (CollectionUtils.isNotEmpty(geometries) && geometries.stream().anyMatch(geometry -> geometry.type == GeoJsonType.GEOMETRY_COLLECTION)) {
+            throw new IllegalArgumentException("Invalid type. nested 'GeometryCollection' not allowed");
+        }
+    }
+
     public static GeometryCollection of(String type, List<Geometry> geometries) {
 
         if (!Objects.equals(type, GeoJsonType.GEOMETRY_COLLECTION.getType())) {

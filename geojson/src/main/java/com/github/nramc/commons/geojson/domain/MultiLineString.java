@@ -23,6 +23,13 @@ public final class MultiLineString extends Geometry {
     }
 
     @JsonCreator
+    public MultiLineString(GeoJsonType type, List<List<Position>> coordinates) {
+        this(coordinates);
+        if (type != GeoJsonType.MULTI_LINE_STRING) {
+            throw new IllegalArgumentException("Invalid type. 'MultiLineString' expected, but got " + type);
+        }
+    }
+
     public static MultiLineString of(GeoJsonType type, List<List<Position>> coordinates) {
         if (type != GeoJsonType.MULTI_LINE_STRING) {
             throw new IllegalArgumentException("Invalid type. 'MultiLineString' expected, but got " + type);

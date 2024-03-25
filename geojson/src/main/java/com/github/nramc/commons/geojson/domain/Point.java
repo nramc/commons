@@ -12,22 +12,34 @@ public final class Point extends Geometry {
 
     public Point(Position coordinates) {
         super(GeoJsonType.POINT);
+        if (coordinates == null) {
+            throw new IllegalArgumentException("Invalid coordinates. 'coordinates' can not be empty or null");
+        }
         this.coordinates = coordinates;
     }
 
     @JsonCreator
-    public static Point of(GeoJsonType type, Position coordinates) {
+    public Point(GeoJsonType type, Position coordinates) {
+        super(GeoJsonType.POINT);
         if (type != GeoJsonType.POINT) {
             throw new IllegalArgumentException("Invalid type. 'Point' expected");
         }
         if (coordinates == null) {
             throw new IllegalArgumentException("Invalid coordinates. 'coordinates' can not be empty or null");
         }
-        return new Point(coordinates);
+        this.coordinates = coordinates;
+    }
+
+    public static Point of(GeoJsonType type, Position coordinates) {
+        return new Point(type, coordinates);
     }
 
     public static Point of(Position coordinates) {
         return of(GeoJsonType.POINT, coordinates);
+    }
+
+    public static Point of(long longitude, long latitude) {
+        return of(GeoJsonType.POINT, Position.of(longitude, latitude));
     }
 
 }
