@@ -30,4 +30,15 @@ class FeatureTest {
                 .satisfies(feature -> assertThat(feature.getProperties()).contains(entry("size", 85)));
     }
 
+    @Test
+    void deserialization_withoutId() throws IOException {
+        Feature object = jacksonTester.parseObject(Files.readString(Path.of("src/test/resources/data/feature-without-id.json")));
+        assertThat(object).isNotNull()
+                .satisfies(feature -> assertThat(feature.type).isEqualTo(GeoJsonType.FEATURE))
+                .satisfies(feature -> assertThat(feature.getId()).isNullOrEmpty())
+                .satisfies(feature -> assertThat(feature.getGeometry()).extracting(GeoJson::getType).isEqualTo(POLYGON_VALUE))
+                .satisfies(feature -> assertThat(feature.getProperties()).contains(entry("name", "Olympic Park")))
+                .satisfies(feature -> assertThat(feature.getProperties()).contains(entry("size", 85)));
+    }
+
 }

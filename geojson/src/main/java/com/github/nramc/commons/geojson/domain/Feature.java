@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -32,17 +31,11 @@ public non-sealed class Feature extends GeoJson {
         if (type != GeoJsonType.FEATURE) {
             throw new IllegalArgumentException("Invalid type. expected 'Feature', but got " + type);
         }
-        if (StringUtils.isBlank(id)) {
-            throw new IllegalArgumentException("Mandatory field 'id' should not be null/blank");
-        }
     }
 
     public static Feature of(String id, GeoJsonType type, Geometry geometry, Map<String, Serializable> properties) {
         if (type != GeoJsonType.FEATURE) {
             throw new IllegalArgumentException("Invalid type. expected 'Feature', but got " + type);
-        }
-        if (StringUtils.isBlank(id)) {
-            throw new IllegalArgumentException("Mandatory field 'id' should not be null/blank");
         }
         return new Feature(id, geometry, MapUtils.emptyIfNull(properties));
     }
