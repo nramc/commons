@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.nramc</groupId>
         <artifactId>commons</artifactId>
-        <version>0.0.37-SNAPSHOT</version>
+        <version>0.0.37</version>
     </parent>
 
     <groupId>io.github.nramc.commons</groupId>
@@ -13,7 +13,7 @@
 
     <scm>
         <url>https://github.com/nramc/commons/tree/main/geojson</url>
-      <tag>HEAD</tag>
+      <tag>v0.0.37</tag>
   </scm>
 
     <properties>
