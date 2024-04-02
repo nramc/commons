@@ -12,7 +12,7 @@
     <url>https://github.com/nramc/commons</url>
 
     <scm>
-        <url>https://github.com/nramc/commons/tree/main/commons-geojson</url>
+        <url>https://github.com/nramc/commons/tree/main/geojson</url>
       <tag>HEAD</tag>
   </scm>
 
