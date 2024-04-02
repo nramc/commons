@@ -9,6 +9,11 @@
 
     <groupId>io.github.nramc.commons</groupId>
     <artifactId>commons-geojson</artifactId>
+    <url>https://github.com/nramc/commons</url>
+
+    <scm>
+        <url>https://github.com/nramc/commons/tree/main/commons-geojson</url>
+    </scm>
 
     <properties>
 
