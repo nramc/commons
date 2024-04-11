@@ -1,9 +1,11 @@
 package com.github.nramc.commons.geojson.domain;
 
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.boot.test.json.JsonContent;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,6 +33,15 @@ class GeoJsonTest {
         assertThat(geoJson).isNotNull()
                 .satisfies(obj -> assertThat(obj.getType()).isEqualTo(POINT_VALUE))
                 .isInstanceOf(Point.class);
+    }
+
+    @Test
+    void serialization_withPoint() throws IOException {
+        Point geoJson = Point.of(Position.of(100.0, 0.0));
+        JsonContent<GeoJson> jsonContent = jacksonTester.write(geoJson);
+        System.out.println(jsonContent);
+        assertThat(jsonContent).isNotNull()
+                .isEqualToJson(Files.readString(Path.of("src/test/resources/data/point.json")), JSONCompareMode.STRICT);
     }
 
     @Test

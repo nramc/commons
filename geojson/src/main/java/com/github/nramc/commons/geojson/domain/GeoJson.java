@@ -1,5 +1,6 @@
 package com.github.nramc.commons.geojson.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.nramc.commons.geojson.domain.types.GeoJsonType;
@@ -25,6 +26,7 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor(force = true)
 public abstract sealed class GeoJson implements Serializable permits Feature, FeatureCollection, Geometry {
+    @JsonIgnore
     protected GeoJsonType type;
 
     protected GeoJson(GeoJsonType type) {
