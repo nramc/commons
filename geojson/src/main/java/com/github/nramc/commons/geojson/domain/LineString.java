@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -16,7 +17,7 @@ public final class LineString extends Geometry {
     private List<Position> coordinates;
 
     public LineString(List<Position> coordinates) {
-        super(GeoJsonType.LINE_STRING);
+        super(GeoJsonType.LINE_STRING.getTypeValue());
         if (coordinates.size() < 2) {
             throw new IllegalArgumentException("Invalid coordinates. Minimum 2 positions required");
         }
@@ -24,18 +25,18 @@ public final class LineString extends Geometry {
     }
 
     @JsonCreator
-    public LineString(GeoJsonType type, List<Position> coordinates) {
+    public LineString(String type, List<Position> coordinates) {
         this(coordinates);
-        if (type != GeoJsonType.LINE_STRING) {
+        if (!Objects.equals(type, GeoJsonType.LINE_STRING.getTypeValue())) {
             throw new IllegalArgumentException(String.format("Invalid type. expected[%s] got:[%s]",
-                    GeoJsonType.LINE_STRING.getType(), type.getType()));
+                    GeoJsonType.LINE_STRING, type));
         }
     }
 
     public static LineString of(GeoJsonType type, List<Position> coordinates) {
         if (type != GeoJsonType.LINE_STRING) {
             throw new IllegalArgumentException(String.format("Invalid type. expected[%s] got:[%s]",
-                    GeoJsonType.LINE_STRING.getType(), type.getType()));
+                    GeoJsonType.LINE_STRING, type));
         }
         return new LineString(coordinates);
     }

@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public abstract sealed class Geometry extends GeoJson permits
         Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, GeometryCollection {
 
-    protected Geometry(GeoJsonType type) {
+    protected Geometry(String type) {
         super(type);
     }
 }

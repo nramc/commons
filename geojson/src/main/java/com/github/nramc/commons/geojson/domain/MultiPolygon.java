@@ -9,6 +9,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -17,14 +18,14 @@ public final class MultiPolygon extends Geometry {
     private List<PolygonCoordinates> coordinates;
 
     public MultiPolygon(final List<PolygonCoordinates> coordinates) {
-        super(GeoJsonType.MULTI_POLYGON);
+        super(GeoJsonType.Constants.MULTI_POLYGON_VALUE);
         this.coordinates = Collections.unmodifiableList(coordinates);
     }
 
     @JsonCreator
-    public MultiPolygon(GeoJsonType type, List<PolygonCoordinates> coordinates) {
+    public MultiPolygon(String type, List<PolygonCoordinates> coordinates) {
         this(coordinates);
-        if (type != GeoJsonType.MULTI_POLYGON) {
+        if (!Objects.equals(type, GeoJsonType.MULTI_POLYGON.getTypeValue())) {
             throw new IllegalArgumentException("Invalid type. expected 'MultiPolygon', but got " + type);
         }
         if (CollectionUtils.isEmpty(coordinates)) {

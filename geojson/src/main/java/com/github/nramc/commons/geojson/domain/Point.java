@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor(force = true)
@@ -13,7 +15,7 @@ public final class Point extends Geometry {
     private Position coordinates;
 
     public Point(Position coordinates) {
-        super(GeoJsonType.POINT);
+        super(GeoJsonType.POINT.getTypeValue());
         if (coordinates == null) {
             throw new IllegalArgumentException("Invalid coordinates. 'coordinates' can not be empty or null");
         }
@@ -21,10 +23,10 @@ public final class Point extends Geometry {
     }
 
     @JsonCreator
-    public Point(GeoJsonType type, Position coordinates) {
-        super(GeoJsonType.POINT);
-        if (type != GeoJsonType.POINT) {
-            throw new IllegalArgumentException("Invalid type. 'Point' expected");
+    public Point(String type, Position coordinates) {
+        super(GeoJsonType.POINT.getTypeValue());
+        if (!Objects.equals(type, GeoJsonType.POINT.getTypeValue())) {
+            throw new IllegalArgumentException("Invalid type. 'Point' expected got '" + type + "'");
         }
         if (coordinates == null) {
             throw new IllegalArgumentException("Invalid coordinates. 'coordinates' can not be empty or null");
@@ -32,12 +34,12 @@ public final class Point extends Geometry {
         this.coordinates = coordinates;
     }
 
-    public Point(GeoJsonType type, double[] coordinates) {
+    public Point(String type, double[] coordinates) {
         this(type, Position.of(coordinates));
     }
 
     public static Point of(GeoJsonType type, Position coordinates) {
-        return new Point(type, coordinates);
+        return new Point(type.getTypeValue(), coordinates);
     }
 
     public static Point of(Position coordinates) {

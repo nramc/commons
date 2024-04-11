@@ -23,7 +23,7 @@ class FeatureTest {
     void deserialization() throws IOException {
         Feature object = jacksonTester.parseObject(Files.readString(Path.of("src/test/resources/data/feature.json")));
         assertThat(object).isNotNull()
-                .satisfies(feature -> assertThat(feature.type).isEqualTo(GeoJsonType.FEATURE))
+                .satisfies(feature -> assertThat(feature.type).isEqualTo(GeoJsonType.Constants.FEATURE_VALUE))
                 .satisfies(feature -> assertThat(feature.getId()).isEqualTo("ID_001"))
                 .satisfies(feature -> assertThat(feature.getGeometry()).extracting(GeoJson::getType).isEqualTo(POLYGON_VALUE))
                 .satisfies(feature -> assertThat(feature.getProperties()).contains(entry("name", "Olympic Park")))
@@ -34,7 +34,7 @@ class FeatureTest {
     void deserialization_withoutId() throws IOException {
         Feature object = jacksonTester.parseObject(Files.readString(Path.of("src/test/resources/data/feature-without-id.json")));
         assertThat(object).isNotNull()
-                .satisfies(feature -> assertThat(feature.type).isEqualTo(GeoJsonType.FEATURE))
+                .satisfies(feature -> assertThat(feature.type).isEqualTo(GeoJsonType.Constants.FEATURE_VALUE))
                 .satisfies(feature -> assertThat(feature.getId()).isNullOrEmpty())
                 .satisfies(feature -> assertThat(feature.getGeometry()).extracting(GeoJson::getType).isEqualTo(POLYGON_VALUE))
                 .satisfies(feature -> assertThat(feature.getProperties()).contains(entry("name", "Olympic Park")))

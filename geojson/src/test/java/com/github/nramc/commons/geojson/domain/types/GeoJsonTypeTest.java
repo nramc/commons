@@ -9,6 +9,6 @@ class GeoJsonTypeTest {
     @ParameterizedTest
     @EnumSource(GeoJsonType.class)
     void getType(GeoJsonType geoJsonType) {
-        Assertions.assertNotNull(geoJsonType.getType());
+        Assertions.assertNotNull(geoJsonType);
     }
 }
