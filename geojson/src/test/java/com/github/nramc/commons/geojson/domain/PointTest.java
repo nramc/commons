@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.boot.test.json.JsonContent;
 
 import java.io.IOException;
 
@@ -20,7 +21,8 @@ class PointTest {
 
     @Test
     void testJsonSerialisation_withLongitudeAndLatitude() throws IOException {
-        assertThat(jacksonTester.write(Point.of(Position.of(60.8, 20.5))))
+        JsonContent<Point> jsonContent = jacksonTester.write(Point.of(Position.of(60.8, 20.5)));
+        assertThat(jsonContent)
                 .isEqualToJson("""
                         { "type": "Point", "coordinates": [60.8, 20.5] }""");
 

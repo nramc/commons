@@ -9,6 +9,7 @@ import org.apache.commons.collections4.MapUtils;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -19,16 +20,16 @@ public non-sealed class Feature extends GeoJson {
     private Map<String, Serializable> properties;
 
     public Feature(String id, Geometry geometry, Map<String, Serializable> properties) {
-        super(GeoJsonType.FEATURE);
+        super(GeoJsonType.FEATURE.getTypeValue());
         this.id = id;
         this.geometry = geometry;
         this.properties = Map.copyOf(properties);
     }
 
     @JsonCreator
-    public Feature(String id, GeoJsonType type, Geometry geometry, Map<String, Serializable> properties) {
+    public Feature(String id, String type, Geometry geometry, Map<String, Serializable> properties) {
         this(id, geometry, MapUtils.emptyIfNull(properties));
-        if (type != GeoJsonType.FEATURE) {
+        if (!Objects.equals(type, GeoJsonType.FEATURE.getTypeValue())) {
             throw new IllegalArgumentException("Invalid type. expected 'Feature', but got " + type);
         }
     }

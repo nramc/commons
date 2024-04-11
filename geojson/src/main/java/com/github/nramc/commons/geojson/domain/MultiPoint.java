@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -17,7 +18,7 @@ public final class MultiPoint extends Geometry {
     private List<Position> coordinates;
 
     public MultiPoint(List<Position> coordinates) {
-        super(GeoJsonType.MULTI_POINT);
+        super(GeoJsonType.MULTI_POINT.getTypeValue());
         if (coordinates.size() < 2) {
             throw new IllegalArgumentException("Invalid coordinates. Minimum 2 positions required");
         }
@@ -25,9 +26,9 @@ public final class MultiPoint extends Geometry {
     }
 
     @JsonCreator
-    public MultiPoint(GeoJsonType type, List<Position> coordinates) {
+    public MultiPoint(String type, List<Position> coordinates) {
         this(coordinates);
-        if (type != GeoJsonType.MULTI_POINT) {
+        if (!Objects.equals(type, GeoJsonType.MULTI_POINT.getTypeValue())) {
             throw new IllegalArgumentException("Invalid type. 'MultiPoint' expected, but got " + type);
         }
     }

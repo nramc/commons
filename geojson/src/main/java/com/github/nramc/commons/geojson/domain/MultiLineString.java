@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -17,15 +18,15 @@ public final class MultiLineString extends Geometry {
     private List<List<Position>> coordinates;
 
     public MultiLineString(List<List<Position>> coordinates) {
-        super(GeoJsonType.MULTI_LINE_STRING);
+        super(GeoJsonType.MULTI_LINE_STRING.getTypeValue());
         coordinates.forEach(MultiLineString::validateAndThrowError);
         this.coordinates = Collections.unmodifiableList(coordinates);
     }
 
     @JsonCreator
-    public MultiLineString(GeoJsonType type, List<List<Position>> coordinates) {
+    public MultiLineString(String type, List<List<Position>> coordinates) {
         this(coordinates);
-        if (type != GeoJsonType.MULTI_LINE_STRING) {
+        if (!Objects.equals(type, GeoJsonType.MULTI_LINE_STRING.getTypeValue())) {
             throw new IllegalArgumentException("Invalid type. 'MultiLineString' expected, but got " + type);
         }
     }

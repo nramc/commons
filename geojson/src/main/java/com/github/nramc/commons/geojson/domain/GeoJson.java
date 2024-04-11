@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, visible = true, property = "type")
@@ -25,15 +24,15 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor(force = true)
 public abstract sealed class GeoJson implements Serializable permits Feature, FeatureCollection, Geometry {
-    protected GeoJsonType type;
+    protected String type;
 
-    protected GeoJson(GeoJsonType type) {
+    protected GeoJson(String type) {
         this.type = type;
     }
 
-
-    public final String getType() {
-        return Objects.requireNonNull(type).getType();
+    protected String getType() {
+        return type;
     }
+
 
 }

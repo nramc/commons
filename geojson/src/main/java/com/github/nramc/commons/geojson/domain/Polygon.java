@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -16,14 +17,14 @@ public final class Polygon extends Geometry {
     private PolygonCoordinates coordinates;
 
     public Polygon(final PolygonCoordinates coordinates) {
-        super(GeoJsonType.POLYGON);
+        super(GeoJsonType.POLYGON.getTypeValue());
         this.coordinates = coordinates;
     }
 
     @JsonCreator
-    public Polygon(GeoJsonType type, List<List<Position>> coordinates) {
+    public Polygon(String type, List<List<Position>> coordinates) {
         this(PolygonCoordinates.of(coordinates));
-        if (type != GeoJsonType.POLYGON) {
+        if (!Objects.equals(type, GeoJsonType.POLYGON.getTypeValue())) {
             throw new IllegalArgumentException("Invalid type. 'Polygon' expected, but got " + type);
         }
         if (CollectionUtils.isEmpty(coordinates)) {
