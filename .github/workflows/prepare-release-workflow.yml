@@ -9,12 +9,6 @@
 name: Prepare Release
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types:
-      - closed
   workflow_dispatch:
     inputs:
       releaseVersion:
