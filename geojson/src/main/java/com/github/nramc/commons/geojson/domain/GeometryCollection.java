@@ -31,7 +31,7 @@ public final class GeometryCollection extends Geometry {
             throw new IllegalArgumentException("Invalid type. expected 'GeometryCollection', but got " + type);
         }
         if (CollectionUtils.isNotEmpty(geometries) &&
-                geometries.stream().anyMatch(geometry -> Objects.equals(geometry.type, GEOMETRY_COLLECTION_VALUE))) {
+                geometries.stream().anyMatch(geometry -> Objects.equals(geometry.getType(), GEOMETRY_COLLECTION_VALUE))) {
             throw new IllegalArgumentException("Invalid type. nested 'GeometryCollection' not allowed");
         }
     }
@@ -43,7 +43,7 @@ public final class GeometryCollection extends Geometry {
         }
 
         if (CollectionUtils.isNotEmpty(geometries) &&
-                geometries.stream().anyMatch(geometry -> Objects.equals(geometry.type, GEOMETRY_COLLECTION_VALUE))) {
+                geometries.stream().anyMatch(geometry -> Objects.equals(geometry.getType(), GEOMETRY_COLLECTION_VALUE))) {
             throw new IllegalArgumentException("Invalid type. nested 'GeometryCollection' not allowed");
         }
 

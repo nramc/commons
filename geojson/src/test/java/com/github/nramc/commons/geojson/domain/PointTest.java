@@ -22,7 +22,6 @@ class PointTest {
     @Test
     void testJsonSerialisation_withLongitudeAndLatitude() throws IOException {
         JsonContent<Point> jsonContent = jacksonTester.write(Point.of(Position.of(60.8, 20.5)));
-        System.out.println(jsonContent);
         assertThat(jsonContent)
                 .isEqualToJson("""
                         { "type": "Point", "coordinates": [60.8, 20.5] }""");

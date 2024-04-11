@@ -39,7 +39,6 @@ class GeoJsonTest {
     void serialization_withPoint() throws IOException {
         Point geoJson = Point.of(Position.of(100.0, 0.0));
         JsonContent<GeoJson> jsonContent = jacksonTester.write(geoJson);
-        System.out.println(jsonContent);
         assertThat(jsonContent).isNotNull()
                 .isEqualToJson(Files.readString(Path.of("src/test/resources/data/point.json")), JSONCompareMode.STRICT);
     }

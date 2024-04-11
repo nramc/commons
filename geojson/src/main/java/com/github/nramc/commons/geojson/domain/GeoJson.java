@@ -30,5 +30,9 @@ public abstract sealed class GeoJson implements Serializable permits Feature, Fe
         this.type = type;
     }
 
+    protected String getType() {
+        return type;
+    }
+
 
 }
