@@ -5,8 +5,6 @@
 
 # Commons GeoJson
 
-[Home](../README.md)
-
 A robust and standards-compliant GeoJSON domain model for Java developers, following
 the [RFC-7946](https://datatracker.ietf.org/doc/html/rfc7946) specification.
 
