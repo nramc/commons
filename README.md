@@ -7,7 +7,7 @@ This is a Java-based multi-module project aimed at providing reusable components
 
 - [Overview](#overview)
 - [Modules](#modules)
-    - [GeoJson](#geojson)
+    - [GeoJson](#geojson) ([goto implementation](geojson/README.md))
 - [Contributing](#contributing)
 - [License](#license)
 - [Credits](#credits)
