@@ -1,5 +1,6 @@
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/nramc/commons/ci-build-workflow.yml?branch=main&style=flat&logoColor=ff0)](https://github.com/nramc/commons/actions/workflows/ci-build-workflow.yml)
-[![Release](https://img.shields.io/github/release/nramc/commons.svg?style=for-the-badge?logoColor=fff&style=flat)](https://github.com/nramc/commons/releases)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nramc_commons&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=nramc_commons)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nramc_commons&metric=coverage)](https://sonarcloud.io/summary/new_code?id=nramc_commons)
 [![Maven Central Version](https://img.shields.io/maven-central/v/io.github.nramc.commons/commons-geojson?style=flat&logo=apachemaven&logoColor=%23C71A36&labelColor=rgba(204%2C%20204%2C%20204%2C%200.8)&color=%2303C75A)](https://mvnrepository.com/artifact/io.github.nramc.commons/commons-geojson)
 [![Badge](https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=159&style=flat)](https://www.linkedin.com/in/ramachandran-nellaiyappan/)
 
