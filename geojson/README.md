@@ -1,5 +1,7 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/nramc/commons/ci-build-workflow.yml?branch=main&style=flat&logoColor=ff0)
 [![Release](https://img.shields.io/github/release/nramc/commons.svg?style=for-the-badge?logoColor=fff&style=flat)](https://github.com/nramc/commons/releases)
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.nramc.commons/commons-geojson?style=flat&logo=apachemaven&color=%23526CFE&link=https%3A%2F%2Fmvnrepository.com%2Fartifact%2Fio.github.nramc.commons%2Fcommons-geojson)
+
 [![Badge](https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=159&style=flat)](https://www.linkedin.com/in/ramachandran-nellaiyappan/)
 
 # Commons GeoJson
