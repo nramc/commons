@@ -13,7 +13,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class LineString extends Geometry {
+public class LineString extends Geometry {
     private List<Position> coordinates;
 
     public LineString(List<Position> coordinates) {

@@ -14,7 +14,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public non-sealed class Feature extends GeoJson {
+public class Feature extends GeoJson {
     private String id;
     private Geometry geometry;
     private Map<String, Serializable> properties;

@@ -11,7 +11,7 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor(force = true)
-public final class Point extends Geometry {
+public class Point extends Geometry {
     private Position coordinates;
 
     public Point(Position coordinates) {

@@ -14,7 +14,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class MultiPolygon extends Geometry {
+public class MultiPolygon extends Geometry {
     private List<PolygonCoordinates> coordinates;
 
     public MultiPolygon(final List<PolygonCoordinates> coordinates) {

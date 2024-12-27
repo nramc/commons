@@ -15,7 +15,7 @@ import static com.github.nramc.commons.geojson.domain.types.GeoJsonType.Constant
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class GeometryCollection extends Geometry {
+public class GeometryCollection extends Geometry {
     private List<Geometry> geometries;
 
     public GeometryCollection(List<Geometry> geometries) {

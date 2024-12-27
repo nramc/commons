@@ -21,8 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(force = true)
-public abstract sealed class Geometry extends GeoJson permits
-        Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, GeometryCollection {
+public abstract class Geometry extends GeoJson {
 
     protected Geometry(String type) {
         super(type);

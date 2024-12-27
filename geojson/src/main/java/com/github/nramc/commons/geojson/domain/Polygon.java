@@ -13,7 +13,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class Polygon extends Geometry {
+public class Polygon extends Geometry {
     private PolygonCoordinates coordinates;
 
     public Polygon(final PolygonCoordinates coordinates) {

@@ -14,7 +14,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class FeatureCollection extends GeoJson {
+public class FeatureCollection extends GeoJson {
     private List<Feature> features;
 
     public FeatureCollection(List<Feature> features) {

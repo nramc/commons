@@ -14,7 +14,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class MultiLineString extends Geometry {
+public class MultiLineString extends Geometry {
     private List<List<Position>> coordinates;
 
     public MultiLineString(List<List<Position>> coordinates) {

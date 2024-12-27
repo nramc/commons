@@ -14,7 +14,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor(force = true)
-public final class MultiPoint extends Geometry {
+public class MultiPoint extends Geometry {
     private List<Position> coordinates;
 
     public MultiPoint(List<Position> coordinates) {

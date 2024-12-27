@@ -23,7 +23,7 @@ import java.io.Serializable;
 })
 @Data
 @NoArgsConstructor(force = true)
-public abstract sealed class GeoJson implements Serializable permits Feature, FeatureCollection, Geometry {
+public abstract class GeoJson implements Serializable {
     protected String type;
 
     protected GeoJson(String type) {
